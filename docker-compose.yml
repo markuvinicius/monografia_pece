@@ -1,12 +1,24 @@
 version: '3'
 
 services:  
-  twitter_collector:
-    build: collectors/twitter
+  posts_collector:
+    build: collectors/twitter_posts
     volumes:
       #Worker
-      - ./collectors/twitter:/collectors/twitter
-    working_dir: /collectors/twitter/src
+      - ./collectors/twitter_posts:/collectors/twitter_posts
+    working_dir: /collectors/twitter_posts/src
+    command: main.py  
+    links:
+      - mongo
+    depends_on:
+      - mongo     
+
+  people_collector:
+    build: collectors/twitter_people
+    volumes:
+      #Worker
+      - ./collectors/twitter_people:/collectors/twitter_people
+    working_dir: /collectors/twitter_people/src
     command: main.py  
     links:
       - mongo
@@ -24,17 +36,15 @@ services:
       #MONGO_DATA_DIR: /data/db
       #MONGO_LOG_DIR: /dev/null
     volumes:
-      - data-volume:/data/db
-
-  #mongo-express:
-  #  image: mongo-express
-  #  restart: always
-  #  ports:
-  #    - 8081:8081
-  #  environment:
-  #    ME_CONFIG_MONGODB_ADMINUSERNAME: root
-  #    ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      - './data:/data/db'
       
 
-volumes:
-  data-volume:
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      

@@ -92,26 +92,13 @@ def tw_oauth(authfile):
 if __name__ == "__main__":
     auth = tw_oauth('../config/tw_auth.k')
 
-    mongo_sync = MongoTwitterSync('mongo',27017,'LZ','RAW_DATA')    
+    mongo_sync = MongoTwitterSync('mongo',27017,'landing_zone','people_data')    
     listener = TwitterStreamListenner(mongo_sync)
     myStream = tweepy.Stream(auth=auth.auth, listener=listener)    
 
-    query_string = ['transito','trânsito','Transito','Trânsito','CET',
-                    'tráfego','trafego','Tráfego','congestionamento','Congestionamento',
-                    'atropelamento','acidente','Acidente',
-                    #'caminho', 'abertura', 'itinerário', 'marcha', 'percurso', 'rota', 'roteiro', 'trajeto',
-                    'engarrafamento','obstrução',
-                    'veículo','veículos','carro','transporte','automóvel','acidente','sinistro','ocorrência','ocorrencia',
-                    'imprevisto','desgraça','afluxo', 'afluência', 'circulação', 'deslocamento', 'fluxo', 'frequência', 
-                    #'movimentação', 'movimento', 'tráfego',
-                    'acidente','colisão','colisao','lentidao','bloqueio','interdição',
-                    'moto','motocicleta','rua','avenida'
-                    ]
 
-    #query_string = ['#transito','#acidente','#colisao','#congestionamento']
-
-    follow = ['339261594','2735996796','76710878','519515156','27744369']
+    follow = ['2735996796','78682416','76710878','107185590','339261594','63542310','153033613']
 
     #myStream.filter(track= query_string, languages=['pt'],follow=follow)
-    myStream.filter(track= query_string, languages=['pt'])
+    myStream.filter(follow=follow, languages=['pt'])
     #myStream.filter(languages=['pt'],follow=follow)
