@@ -50,7 +50,9 @@ class TwitterStreamListenner(tweepy.StreamListener):
             'place'   : None,
             'hashtags': [],
             'urls'    : [],
-            'user_mentions': [],            
+            'user_mentions': [],  
+            'retweeted' : None,
+            'quoted'  : None   
         }
 
         parsed_data['id'] = json_data['id']
@@ -61,6 +63,17 @@ class TwitterStreamListenner(tweepy.StreamListener):
             parsed_data['texto'] = json_data['extended_tweet']['full_text']
         else:
             parsed_data['texto'] = json_data['text']
+
+        if 'retweeted_status' in json_data:
+            parsed_data['retweeted'] = True
+        else:
+            parsed_data['retweeted'] = False
+
+        if 'quoted_status' in json_data:
+            parsed_data['quoted'] = True
+        else:
+            parsed_data['quoted'] = False
+
 
         parsed_data['location'] = json_data['user']['location']
         parsed_data['lang'] = json_data['lang']
