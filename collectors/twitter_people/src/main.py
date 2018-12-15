@@ -97,8 +97,34 @@ if __name__ == "__main__":
     myStream = tweepy.Stream(auth=auth.auth, listener=listener)    
 
 
-    follow = ['2735996796','78682416','76710878','107185590','339261594','63542310','153033613']
-
-    #myStream.filter(track= query_string, languages=['pt'],follow=follow)
-    myStream.filter(follow=follow, languages=['pt'])
-    #myStream.filter(languages=['pt'],follow=follow)
+    follow = ['2735996796',
+              '78682416',
+              '76710878',
+              '107185590',
+              '339261594',
+              '63542310',
+              '153033613',
+              '138075168',
+              '385206072',
+              '33535408',
+              '728331254840602625',
+              '34604337',
+              '21087358',
+              '327548721',
+              '63459107',
+              '132245890',
+              '551433766',
+              '861714397',
+              '861720824',
+              '861654906',
+              '861605592',
+              '281105655',
+              '76713550',
+              '861646484',
+              '861589262',
+              '76931509',
+              '76714080',
+              '36859263'
+              ]
+ 
+    myStream.filter(follow=follow, languages=['pt'])    
