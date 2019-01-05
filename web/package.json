@@ -2,10 +2,11 @@
   "name": "web_labeled_data",
   "version": "1.0.0",
   "description": "Aplicacao web para rotulação de dados",
-  "main": "index.js",
+  "main": "start.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon start.js"
+    "dev": "nodemon start.js",
+    "start": "node start.js"
   },
   "repository": {
     "type": "git",
