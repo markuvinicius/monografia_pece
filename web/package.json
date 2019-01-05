@@ -1,0 +1,32 @@
+{
+  "name": "web_labeled_data",
+  "version": "1.0.0",
+  "description": "Aplicacao web para rotulação de dados",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markuvinicius/monografia_pece.git"
+  },
+  "author": "Marku Vinicius da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markuvinicius/monografia_pece/issues"
+  },
+  "homepage": "https://github.com/markuvinicius/monografia_pece#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.2.1",
+    "dotenv": "^6.2.0",    
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",    
+    "mongoose": "^5.4.1",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
