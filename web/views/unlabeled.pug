@@ -3,10 +3,12 @@ extends layout
 block content    
   script(src="http://code.jquery.com/jquery-3.1.0.min.js")
   script(src="/magic.js")
-
+  script(src="/bootstrap.js")
+ 
   if (typeof tweets != "undefined")    
     if tweets.length
-      form(action='save' method="post" id="formTweets")              
+      form(action='save' method="post" id="formTweets")       
+        input(type="hidden", value=user, name="usuario_update")  
         table.listing-table.table.table-striped      
           tr
             th Usuário          
@@ -16,7 +18,8 @@ block content
             tr
               td= tweet.usuario            
               td= tweet.texto
-              td(width='100px' span=2)                 
+              td(width='100px' span=2)  
+                
                 input(type="radio", name=tweet.id, value="Sim", id="label")
                 | Sim
                 br 
@@ -26,9 +29,6 @@ block content
         input(type="submit", 
               value="Save",
               class="btn btn-lg btn-primary btn-block"
-        )
-
-              
-                  
+        )                                
   else
-    p No unlabeled yet :(
+    p Sem dados para exibir :(

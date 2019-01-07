@@ -19,6 +19,9 @@ const tweetSchema = new mongoose.Schema({
   }, 
   label:{
       type:String,      
+  },
+  labeled_by:{
+      type:mongoose.Schema.Types.ObjectId,
   }   
 });
 

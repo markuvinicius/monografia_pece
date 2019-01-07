@@ -2,16 +2,30 @@
 import sys
 import csv
 from pymongo import MongoClient
+
+target_mongo_uri="mongodb://app:nodeapp01@ds249824.mlab.com:49824/labeling_zone"
  
 def get_data(collection):          
      mongoClient = MongoClient('192.168.0.47',27017)     
      db = mongoClient.landing_zone
      collection = db[collection]     
-     tweets = collection.find({"retweeted":False,
-                               "quoted":False,
-                               "lang":"pt"
-                              })
-
+     tweets = collection.find({'$and': [ {'retweeted':False}, {'quoted':False},{'lang':"pt"},
+                                         {'$or': [ 
+                                             {'texto':{'$regex':u'acidente'}},                                             
+                                             {'texto':{'$regex':u'colisao'}},
+                                             {'texto':{'$regex':u'colisão'}},
+                                             {'texto':{'$regex':u'capotamento'}},
+                                             {'texto':{'$regex':u'batida'}},                        
+                                             {'texto':{'$regex':u'trânsito'}},
+                                             {'texto':{'$regex':u'choque'}},
+                                             {'texto':{'$regex':u'engavetamento'}},
+                                             {'texto':{'$regex':u'motoqueiro'}},
+                                             {'texto':{'$regex':u'motocicleta'}},
+                                             {'texto':{'$regex':u'sinistro'}},
+                                             {'texto':{'$regex':u'desastre'}},
+                                             {'texto':{'$regex':u'incidente'}},
+                                             {'texto':{'$regex':u'veículo'}}
+                                        ]}]})                                             
      return tweets
 
 def dump_data(new_collection, data):     
@@ -31,14 +45,15 @@ def dump_data(new_collection, data):
           }
           posts.append(tweet)
           count = count+1
-          
-     mongoClient = MongoClient('mongodb://app:nodeapp01@ds249824.mlab.com:49824/labeling_zone')     
-     db = mongoClient.labeling_zone
-     collection = db[new_collection]
-     result = collection.insert_many(posts)
 
-     return result   
-          
+     if len(posts)>0:     
+          mongoClient = MongoClient(target_mongo_uri)     
+          db = mongoClient.labeling_zone
+          collection = db[new_collection]
+          return collection.insert_many(posts)
+     else:
+          print("Sem documentos para inserir")
+          return None               
              
 if __name__ == "__main__":
      reload(sys)

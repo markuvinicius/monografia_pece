@@ -3,9 +3,16 @@ html
   head
     title= `${title}`
     link(rel='stylesheet', href='/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/css/styles.css')    
-  body
-    div.container.listing-reg
-      h1 My Amazing App
+    link(rel='stylesheet', href='/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/the-big-picture.css')
 
-      block content
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+    script(src='/js/bootstrap.min.js')   
+    
+  body
+    block content
+
+    <!-- Bootstrap core JavaScript -->
+    script(src="vendor/jquery/jquery.min.js")
+    script(src="vendor/bootstrap/js/bootstrap.bundle.min.js")

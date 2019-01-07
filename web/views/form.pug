@@ -8,27 +8,48 @@ block content
       for error in errors
         li= error.msg
 
-  form(action="." method="POST" class="form-registration")
-    label(for="name") Name:
-    input(
-      type="text"
-      id="name"
-      name="name"
-      class="form-control"
-      value=data.name
-    )
+  div(class="container") 
+    form(action="." method="POST" class="form-registration")
+      div(class="row")
+        div(class="col-sm")       
+          div(class="jumbotron jumbotron-fluid")
+            div(class="container")
+              h1(class="display-4") 
+                p(class="lead") Texto Jumbotron
 
-    label(for="email") Email:
-    input(
-      type="email"
-      id="email"
-      name="email"
-      class="form-control"
-      value=data.email
-    )
+      div(class="row")
+        div(class="col-sm")       
+          label(for="name") Nome:
+          input(
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            value=data.name
+          )
 
-    input(
-      type="submit"
-      value="Submit"
-      class="btn btn-lg btn-primary btn-block"
-    )
+      div(class="row")
+        div(class="col-sm")
+          label(for="email") Email:
+          input(
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            value=data.email
+          )
+
+      div(class="row")
+        div(class="col-sm")
+          br
+      
+      div(class="row")
+        div(class="col-sm")
+          input(
+            type="submit"
+            value="Submit"
+            class="btn btn-lg btn-primary btn-block"
+          )
+      
+
+      
