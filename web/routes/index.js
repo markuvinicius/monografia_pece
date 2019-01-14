@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const mongoose = require('mongoose');
 const { body, validationResult } = require('express-validator/check');
 const router = express.Router();
@@ -7,12 +8,24 @@ const querystring = require('querystring');
 const Registration = mongoose.model('Registration');
 const Tweet = mongoose.model('Tweet');
 
+var sess;
+
 router.get('/', (req, res) => {
     res.render('home', { title: 'Registration form' ,illustration_url:'img/pece.png'});
 });
 
 router.get('/form', (req, res) => {
-  res.render('form', { title: 'Registration form' ,illustration_url:'img/pece.png'});
+  sess = req.session;
+  console.log(sess);
+  
+  if ( ( typeof sess != "undefined") && ( typeof sess.user != "undefined" )){
+        const query = querystring.stringify({                
+          "logged_user":sess.user._id
+        });      
+        res.redirect('/unlabeled?' + query)   
+    }else{      
+      res.render('form', { title: 'Registration form' ,illustration_url:'img/pece.png'});
+    }
 });
 
 router.post('/',
@@ -25,6 +38,9 @@ router.post('/',
       .withMessage('Por favor, informe seu e-mail'),
   ],
   (req, res) => {
+    sess = req.session;
+    console.log('entrou no método salvar usuário');
+    console.log(sess);
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
@@ -36,7 +52,10 @@ router.post('/',
               const query = querystring.stringify({                
                 "logged_user":reg.id
               });
-              
+              console.log(reg)
+              sess.user = reg;  
+              console.log('pós salvamento'); 
+              console.log(sess);           
               res.redirect('/unlabeled?' + query)              
             })
             .catch(() => { res.send('Sorry! Something went wrong.'); });
