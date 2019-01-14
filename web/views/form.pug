@@ -1,4 +1,4 @@
-extends layout
+extends base-layout
 
 block content
   -data = data || {}
@@ -10,34 +10,30 @@ block content
 
   div(class="container") 
     form(action="." method="POST" class="form-registration")
-      div(class="row")
-        div(class="col-sm")       
-          div(class="jumbotron jumbotron-fluid")
-            div(class="container")
-              h1(class="display-4") 
-                p(class="lead") Texto Jumbotron
+      div(class="col-lg-6")  
+        h1(class="mt-2")                    
+        img(src=illustration_url)     
 
+      <br/>  
       div(class="row")
         div(class="col-sm")       
-          label(for="name") Nome:
+          label(for="name") Nome
           input(
             type="text"
             id="name"
             name="name"
             class="form-control"
-            value=data.name
-          )
-
+            value=data.name)
+      <br/>  
       div(class="row")
         div(class="col-sm")
-          label(for="email") Email:
+          label(for="email") Email
           input(
             type="email"
             id="email"
             name="email"
             class="form-control"
-            value=data.email
-          )
+            value=data.email)
 
       div(class="row")
         div(class="col-sm")

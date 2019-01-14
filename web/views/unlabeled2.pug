@@ -1,0 +1,41 @@
+extends base-layout
+
+block content    
+
+  section  
+ 
+    div(class="container")
+      if (typeof tweets != "undefined")    
+        if tweets.length
+          form(action='save' method="post" id="formTweets") 
+            input(type="hidden", value=user, name="usuario_update")                    
+            each tweet in tweets
+              div(class="card")
+                div(class="card-body")
+                  h5(class="card-title") Usuário                                         
+                  h5(class="card-subtitle mb-2 text-muted")                                         
+                    p=tweet.usuario
+                  h5(class="card-title") Tweet
+                  p(class="card-text")
+                    p=tweet.texto
+                  
+                  div(class="row")
+                    div(class="col")
+                      input(type="radio", name=tweet.id, value="Sim", id="label") 
+                      label(class="form-check-label" for=tweet.id) Sim                      
+                    div(class="col")
+                      input(type="radio", name=tweet.id, value="Não", id="label") 
+                      label(class="form-check-label" for=tweet.id) Não
+            div(class="container")
+              <br/>
+              input(type="submit", 
+                    value="Salvar",
+                    class="btn btn-lg btn-primary btn-block") 
+
+        div(class="container") 
+          <br/>
+          <br/>
+          <br/>
+
+      else
+        p Sem dados para exibir :(

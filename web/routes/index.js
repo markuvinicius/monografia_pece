@@ -8,7 +8,11 @@ const Registration = mongoose.model('Registration');
 const Tweet = mongoose.model('Tweet');
 
 router.get('/', (req, res) => {
-    res.render('form', { title: 'Registration form' });
+    res.render('home', { title: 'Registration form' ,illustration_url:'img/pece.png'});
+});
+
+router.get('/form', (req, res) => {
+  res.render('form', { title: 'Registration form' ,illustration_url:'img/pece.png'});
 });
 
 router.post('/',
@@ -46,17 +50,21 @@ router.post('/',
   }
 );
 
-router.get('/index', (req,res) => {
-  res.render('index', {title:'Portal de Treinamento Supervisionado'});
+router.get('/home', (req,res) => {
+  res.render('home', {title:'Portal de Treinamento Supervisionado',illustration_url:'img/pece.png'});
 });
 
 router.get('/unlabeled', (req,res) => {            
     Tweet.find({"label":null}).limit(5)
       .then((tweets) => {        
-        res.render('unlabeled', {title: 'Unlabeled Tweets', tweets:tweets, user:req.query.logged_user});
+        res.render('unlabeled2', {title: 'Unlabeled Tweets', tweets:tweets, user:req.query.logged_user});
       })
       .catch(() => { res.send('Sorry! Something went wrong.'); });
 });
+
+router.get('/instructions', (req,res) => {
+  res.render('instructions', {title:'Portal de Treinamento - Instruções',illustration_url:'img/pece.png'});
+})
 
 router.post('/save', (req, res) => {    
     var logged_user = req.body['usuario_update']
