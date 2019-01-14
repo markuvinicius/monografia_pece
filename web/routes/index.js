@@ -16,7 +16,6 @@ router.get('/', (req, res) => {
 
 router.get('/form', (req, res) => {
   sess = req.session;
-  console.log(sess);
   
   if ( ( typeof sess != "undefined") && ( typeof sess.user != "undefined" )){
         const query = querystring.stringify({                
@@ -39,8 +38,7 @@ router.post('/',
   ],
   (req, res) => {
     sess = req.session;
-    console.log('entrou no método salvar usuário');
-    console.log(sess);
+    
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
@@ -52,10 +50,8 @@ router.post('/',
               const query = querystring.stringify({                
                 "logged_user":reg.id
               });
-              console.log(reg)
-              sess.user = reg;  
-              console.log('pós salvamento'); 
-              console.log(sess);           
+              
+              sess.user = reg;                
               res.redirect('/unlabeled?' + query)              
             })
             .catch(() => { res.send('Sorry! Something went wrong.'); });
