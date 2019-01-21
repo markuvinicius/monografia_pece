@@ -2,24 +2,24 @@ version: '3'
 
 services:  
   posts_collector:
-    build: collectors/twitter_posts
+    build: collectors/tweepy_collector
     volumes:
       #Worker
-      - ./collectors/twitter_posts:/collectors/twitter_posts
-    working_dir: /collectors/twitter_posts/src
-    command: main.py  
+      - ./collectors/tweepy_collector:/collectors/tweepy_collector
+    working_dir: /collectors/tweepy_collector/src
+    command: posts_collector.py /collectors/tweepy_collector/config/config.json posts_data --env LOCAL
     links:
       - mongo
     depends_on:
-      - mongo     
+      - mongo       
 
   people_collector:
-    build: collectors/twitter_people
+    build: collectors/tweepy_collector
     volumes:
       #Worker
-      - ./collectors/twitter_people:/collectors/twitter_people
-    working_dir: /collectors/twitter_people/src
-    command: main.py  
+      - ./collectors/tweepy_collector:/collectors/tweepy_collector
+    working_dir: /collectors/tweepy_collector/src
+    command: people_collector.py /collectors/tweepy_collector/config/config.json people_data --env LOCAL
     links:
       - mongo
     depends_on:
@@ -29,22 +29,6 @@ services:
     image: mongo
     restart: always
     ports:
-      - 27017:27017
-    #environment:
-      #MONGO_INITDB_ROOT_USERNAME: root
-      #MONGO_INITDB_ROOT_PASSWORD: example
-      #MONGO_DATA_DIR: /data/db
-      #MONGO_LOG_DIR: /dev/null
+      - 27017:27017    
     volumes:
-      - './data:/data/db'
-      
-
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      
+      - './data:/data/db'      

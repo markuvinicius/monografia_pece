@@ -1,0 +1,46 @@
+{
+    "LOCAL": {
+        "MONGODB":{
+            "MONGODB_URI":"mongo",
+            "MONGODB_PORT":27017,
+            "MONGODB_DATABASE":"landing_zone",            
+            "MONGODB_USER":"",
+            "MONGODB_PASSWORD":""
+        },
+
+        "TWITTER":{
+            "CONSUMER_TOKEN":"tmrGLYjlAN877sBj059HyVNlP",
+            "CONSUMER_SECRET":"ua6P7VsGvd0w0zePRhNWPl1r446lPTVpYsFJwNXVRKyO4TeE4D",
+            "KEY":"65790150-xAjij9DrhZOmYcgfPAThKzOzTO9RyFmK8imj4MrC4",
+            "SECRET":"LJ7NPosZkbcSxh5teewFwF4pQIi71WMHeMqD2nzkKUZYP"
+        },
+
+        "LOG":{
+            "LOG_FORMAT":"%(asctime)s %(levelname)-10s %(message)s",
+            "LOG_LEVEL":"DEBUG"
+        }
+    },    
+
+    "PROD": {
+        "MONGODB":{
+            "MONGODB_URI":"ds145639.mlab.com",
+            "MONGODB_PORT":45639,
+            "MONGODB_DATABASE":"landing_zone",            
+            "MONGODB_USER":"collector",
+            "MONGODB_PASSWORD":"collector123"
+        },
+
+        "TWITTER":{
+            "CONSUMER_TOKEN":"tmrGLYjlAN877sBj059HyVNlP",
+            "CONSUMER_SECRET":"ua6P7VsGvd0w0zePRhNWPl1r446lPTVpYsFJwNXVRKyO4TeE4D",
+            "KEY":"65790150-xAjij9DrhZOmYcgfPAThKzOzTO9RyFmK8imj4MrC4",
+            "SECRET":"LJ7NPosZkbcSxh5teewFwF4pQIi71WMHeMqD2nzkKUZYP"
+        },
+
+        "LOG":{
+            "LOG_FORMAT":"%(asctime)s %(levelname)-10s %(message)s",
+            "LOG_LEVEL":"INFO"
+        }
+    }
+
+}
