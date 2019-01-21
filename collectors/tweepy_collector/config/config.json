@@ -38,8 +38,8 @@
         },
 
         "LOG":{
-            "LOG_FORMAT":"%(asctime)s %(levelname)-10s %(message)s",
-            "LOG_LEVEL":"INFO"
+            "LOG_FORMAT":"%(asctime)s %(levelname)-10s %(name)s %(message)s",
+            "LOG_LEVEL":"DEBUG"
         }
     }
 

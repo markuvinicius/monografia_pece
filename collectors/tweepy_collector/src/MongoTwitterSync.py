@@ -14,12 +14,11 @@ class MongoTwitterSync(TwitterSync):
         if  ( user is None ) | (password is None) | ( (user == "") & (password == "") ) :          
             uri = "mongodb://%s:%s" % (host, port)
         else:    
-            uri = "mongodb://%s:%s@%s:%s" % (quote_plus(user), quote_plus(password), host, port)
+            uri = "mongodb://%s:%s@%s:%s//%s" % (quote_plus(user), quote_plus(password), host, port,database)
             
         self.logger.debug(uri)        
         client = MongoClient(uri)
 
-        self.database = client[database]
         self.collection = collection
             
 
