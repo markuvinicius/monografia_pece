@@ -107,8 +107,6 @@ if __name__ == "__main__":
                     'sinistro',
                     'ocorrencia','ocorrência',                    
                     'colisao','colisão',                                        
-                    'obstrucao','obstrução','obstrucão',                     
-                    'rua',
-                    'rodovia']
+                    'obstrucao','obstrução','obstrucão']
 
     myStream.filter(track=query_string, languages=['pt'])  
