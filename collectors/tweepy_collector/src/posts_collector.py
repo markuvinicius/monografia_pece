@@ -53,7 +53,7 @@ def config_mongo_sync(config):
 # helper que configura o logger da aplicação
 def config_log(config):    
     # create logger
-    logger = logging.getLogger('people_collector')
+    logger = logging.getLogger('posts_collector')
     logger.setLevel(config['LOG']['LOG_LEVEL'])
     # create console handler and set level to debug
     ch = logging.StreamHandler()
