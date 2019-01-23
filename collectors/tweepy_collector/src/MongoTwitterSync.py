@@ -15,7 +15,6 @@ class MongoTwitterSync(TwitterSync):
 		else:    
 			uri = "mongodb://%s:%s@%s:%s/%s" % (quote_plus(user), quote_plus(password), host, port,database)
 
-		
 		client = MongoClient(uri)
 		self.database   = client[database]
 		self.collection = collection
