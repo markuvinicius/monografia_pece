@@ -1,11 +1,18 @@
 import tweepy
 import json
 import logging
+from datetime import datetime, timedelta
+from email.utils import parsedate_tz
 
 #override tweepy.StreamListener to add logic to on_data
 class TwitterStreamListenner(tweepy.StreamListener):
     sync = None
     logger = None
+
+    def to_datetime(self, datestring):
+        time_tuple = parsedate_tz(datestring.strip())
+        dt = datetime(*time_tuple[:6])
+        return dt - timedelta(seconds=time_tuple[-1])
     
     def __init__(self, sync, logger):
        self.sync = sync         
@@ -60,5 +67,10 @@ class TwitterStreamListenner(tweepy.StreamListener):
         parsed_data['urls']     = json_data['entities']['urls']
         parsed_data['user_mentions'] = json_data['entities']['user_mentions']
 
-        self.logger.debug(parsed_data)        
-        self.sync.persist(parsed_data)
+        self.logger.debug(parsed_data)   
+
+        created_at = self.to_datetime(parsed_data['data'])
+
+        if ( ( ( created_at.hour >= 7 ) & ( created_at < 10) ) |
+            ( ( created_at.hour >= 17 ) & ( created_at < 20) ) ) :
+            self.sync.persist(parsed_data)
