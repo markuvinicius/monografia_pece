@@ -70,7 +70,8 @@ class TwitterStreamListenner(tweepy.StreamListener):
         self.logger.debug(parsed_data)   
 
         created_at = self.to_datetime(parsed_data['data'])
+        hour = int(created_at.hour)
 
-        if ( ( ( created_at.hour >= 7 ) & ( created_at < 10) ) |
-            ( ( created_at.hour >= 17 ) & ( created_at < 20) ) ) :
+        if ( ( ( hour >= 7 ) & ( hour < 10) ) |
+            ( ( hour >= 17 ) & ( hour < 20) ) ) :
             self.sync.persist(parsed_data)
