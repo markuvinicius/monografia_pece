@@ -2,6 +2,7 @@
 import sys
 import csv
 from pymongo import MongoClient
+import dateutil.parser
 
 origin_mongo_uri="mongodb://collector:collector123@ds145639.mlab.com:45639/landing_zone"
 target_mongo_uri="mongodb://app:nodeapp01@ds249824.mlab.com:49824/labeling_zone"
@@ -48,8 +49,10 @@ def dump_data(new_collection, data):
           """
           tweet = item
 
-          posts.append(tweet)
-          count = count+1
+          date_tweet = some_datetime_obj = dateutil.parser.parse(tweet['data'])
+          if ( date_tweet.day >= 11 ):
+               posts.append(tweet)
+               count = count+1
 
      if len(posts)>0:     
           mongoClient = MongoClient(target_mongo_uri)     
