@@ -12,10 +12,8 @@ block content
             each tweet in tweets
               div(class="card")
                 div(class="card-body")
-                  h5(class="card-title") Usuário                                         
-                  h5(class="card-subtitle mb-2 text-muted")                                         
-                    p=tweet.usuario
-                  h5(class="card-title") Tweet
+                  h5(class="card-title") 
+                    p=tweet.usuario                                 
                   p(class="card-text")
                     p=tweet.texto
                   
