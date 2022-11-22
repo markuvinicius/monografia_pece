@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.9",
-    "browser-sync": "2.24.5"
+    "browser-sync": "2.27.10"
   }
 }
